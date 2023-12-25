@@ -1,0 +1,14 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+input{
+    width: 20em;
+    height: 6vh;
+    border-radius: 20px 2px;
+    text-align: center;
+    background-color:rgb(228, 86, 86);
+    border: none;
+    font-size: 1.3em;
+}
