@@ -4,26 +4,56 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2em;
 }
 form{
   text-align: center;
-  max-height: 70vh;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2em;
-  box-shadow: 2px 2px 20px 2px black;
+  align-items: center;
+  padding: 1em;
+  width: 35%;
+  box-shadow: 2px 2px 2px 2px black;
 }
 form input{
   text-align: center;
   padding: 1em;
   margin: 1em;
+  font-size: 15px;
+  width: 85%;
+}
+form button{
+  width: 40%;
+  align-self: center;
+  margin-top: 1em;
+  padding: 0.8em;
+  letter-spacing: 2px;
 }
 .wrapper{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   padding: 2em;
+  justify-content: center;
+  
 }
 .book{
   padding: 2em;
+  cursor: pointer;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+}
+input{
+  width: 20em;
+  height: 6vh;
+  border-radius: 20px 2px;
+  text-align: center;
+  background-color:rgb(228, 86, 86);
+  border: none;
+  font-size: 1.3em;
 }

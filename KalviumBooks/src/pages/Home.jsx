@@ -1,10 +1,9 @@
-// Home.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../App.css";
 
-function Home({ searchInput = '' }) {
+const HomePage = ({ searchInput }) => {
   const [books, setBooks] = useState([]);
-  const [filteredBooks, setFilteredBooks] = useState([]);
 
   useEffect(() => {
     axios
@@ -14,47 +13,48 @@ function Home({ searchInput = '' }) {
         },
       })
       .then((res) => {
-        console.log(res.data.books);
-        setBooks(res.data.books);
+        const filteredBooks = res.data.books.filter((book) =>
+          book.title.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        setBooks(filteredBooks);
       })
       .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    const filtered = books.filter(
-      (book) =>
-        book.title.toLowerCase().includes(searchInput.toLowerCase()));
-        setFilteredBooks(filtered);
-  }, [searchInput, books]);
+  }, [searchInput]);
 
   return (
     <div>
+      
       <div className='wrapper'>
-        {filteredBooks.length === 0 ? (
-          <div>No books found with the given search input.</div>
-        ) : (
-          filteredBooks.map((book) => {
-            return (
-              <div className='book'  key={book.id}>
-                <div > 
-                <img
-                    src={book.imageLinks.thumbnail}
-                    alt="Book"
-                    style={{ cursor: "pointer" }}
-                  />
-                  <h3> {book.title}</h3>
-                  <h4> By- {book.authors}</h4>
-                  <h4> {book.averageRating} Stars</h4>
-                  <h4>Free</h4>
-                  
-                  </div>
-              </div>
-            );
-          })
-        )}
+
+        {books.map((book) => (
+
+          <div className='book' key={book.id}>
+
+            <img 
+              className="book-img"
+              src={book.imageLinks.thumbnail}
+              alt={book.title}
+            />
+            <h2>{book.title}</h2>
+
+            <br />
+            
+            <p>By- {book.authors}</p>
+
+            Ratings: {
+              book.averageRating ? <span>{book.averageRating}★</span> : "No ratings yet"
+            }
+
+            <h2>Free</h2>
+
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
 
-export default Home;
+export default HomePage;
+
+
+

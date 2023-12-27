@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomePage from './pages/Home';
+import RegisterPage from './pages/Register';
 import Navbar from './component/Navbar';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import { useState } from 'react';
 
 const App = () => {
   const [searchInput, setSearchInput] = useState('');
 
-  const handleSearch = (query) => {
-    setSearchInput(query);
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
   };
 
+// Switch and Route code from Bard
   return (
-    <Router>
-      <Navbar onSearch={handleSearch} />
-      <Switch>
-        <Route path="/" exact>
-          <Home searchInput={searchInput} />
-        </Route>
-        <Route path="/register" component={Register} />
-      </Switch>
+    <Router basename="/KalviumBooks-CA-5/">
+      <div>
+        <Navbar searchInput={searchInput} handleInputChange={handleInputChange} />
+        <Switch>
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
+          <Route path="/">
+            <HomePage searchInput={searchInput} />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 };
 
 export default App;
-
